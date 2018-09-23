@@ -1,0 +1,19 @@
+﻿apiVersion: v1               
+kind: Service                
+metadata:                    
+  name: sample-elasticsearch        
+  labels:                    
+    service: sample-elasticsearch
+spec:                        
+  type: ClusterIP
+  selector:                   
+    service: sample-elasticsearch
+  ports:                     
+  - name: http               
+    port: 9200               
+    targetPort: 9200
+    protocol: TCP            
+  - name: transport          
+    port: 9300               
+    targetPort: 9300
+    protocol: TCP            

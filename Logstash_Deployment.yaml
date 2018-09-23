@@ -1,0 +1,44 @@
+﻿apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: sample-logstash
+  labels:
+    component: sample-logstash
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+     component: sample-logstash
+  template:
+    metadata:
+      labels:
+        component: sample-logstash
+    spec:
+      containers:
+      - name: sample-logstash
+        image: docker.elastic.co/logstash/logstash:6.4.1
+        volumeMounts:
+        - name: sample-logstash-configmap
+          mountPath: /usr/share/logstash/config/logstash.yml
+          subPath: logstash.yml
+        - name: sample-logstash-configmap
+          mountPath: /usr/share/logstash/pipeline/logstash.conf
+          subPath: logstash.conf
+        - name: sample-logstash-configmap
+          mountPath: /usr/share/logstash/azureeventhubs.cfg
+          subPath: azureeventhubs.cfg
+        - name: sample-logstash-configmap
+          mountPath: /usr/share/logstash/config/pipelines.yml
+          subPath: pipelines.yml
+        resources:
+          limits:
+            cpu: 1000m
+          requests:
+            cpu: 100m
+        ports:
+        - containerPort: 5601
+          name: http
+      volumes:
+        - name: sample-logstash-configmap
+          configMap:
+            name: sample-logstash-configmap

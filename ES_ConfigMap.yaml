@@ -1,0 +1,16 @@
+﻿apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sample-elasticsearch-configmap
+  namespace: default
+data:
+  elasticsearch.yml: |
+    cluster.name: "sample-elasticsearch-cluster"
+    network.host: 0.0.0.0
+    discovery.zen.minimum_master_nodes: 1
+    #Update max_local_storage_nodes value based on number of nodes
+    node.max_local_storage_nodes: 1
+    xpack.security.enabled: true
+    xpack.monitoring.collection.enabled: true
+
+  role_mapping.yml: |
