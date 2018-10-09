@@ -38,6 +38,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elasticsearch", "Elasticsea
 		Azure AD SAML SSO\Elasticsearch\elastic-stack-ca.p12 = Azure AD SAML SSO\Elasticsearch\elastic-stack-ca.p12
 		Azure AD SAML SSO\Elasticsearch\elastic-certificates.p12 = Azure AD SAML SSO\Elasticsearch\elastic-certificates.p12
 		Azure AD SAML SSO\Elasticsearch\Elasticsearch.xml = Azure AD SAML SSO\Elasticsearch\Elasticsearch.xml
+		Azure AD SAML SSO\Elasticsearch\ES_PersistentVolumeClaim.yaml = Azure AD SAML SSO\Elasticsearch\ES_PersistentVolumeClaim.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kibana", "Kibana", "{3700D424-4D70-4801-9790-06148FD6C062}"
