@@ -1,0 +1,14 @@
+﻿apiVersion: v1
+kind: Service
+metadata:
+  name: sample-logstash
+  labels:
+    component: sample-logstash
+spec:
+  type: ClusterIP
+  selector:
+    component: sample-logstash
+  ports:
+  - name: http
+    port: 80
+    targetPort: http

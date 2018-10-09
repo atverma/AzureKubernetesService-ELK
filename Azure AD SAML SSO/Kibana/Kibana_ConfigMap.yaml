@@ -1,0 +1,26 @@
+﻿apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sample-kibana-configmap
+  namespace: default
+data:
+  kibana.yml: |
+    server.name: sample-kibana
+    server.host: "0.0.0.0"
+    elasticsearch.url: https://sample-elasticsearch:9200
+    xpack.monitoring.ui.container.elasticsearch.enabled: true
+    elasticsearch.username: kibana
+    elasticsearch.password: Password1$
+    xpack.security.encryptionKey: "something_at_least_32_characters"
+    elasticsearch.ssl.certificateAuthorities: "/usr/share/kibana/config/elastic-stack-ca.pem"
+    server.ssl.enabled: true
+    server.ssl.key: "/usr/share/kibana/config/instance.key"
+    server.ssl.certificate: "/usr/share/kibana/config/instance.crt"
+    xpack.monitoring.elasticsearch.ssl.verificationMode: certificate
+    elasticsearch.ssl.verificationMode: certificate
+    xpack.security.authProviders: [saml, basic]
+    server.xsrf.whitelist: [/api/security/v1/saml]
+    xpack.security.public:
+      protocol: https
+      hostname: KIBANA_URL
+      

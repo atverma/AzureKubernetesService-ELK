@@ -1,0 +1,47 @@
+﻿apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: sample-kibana
+  labels:
+    component: sample-kibana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+     component: sample-kibana
+  template:
+    metadata:
+      labels:
+        component: sample-kibana
+    spec:
+      containers:
+      - name: sample-kibana
+        image: YOUR_KIBANA_IMAGE
+        resources:
+          limits:
+            cpu: 1000m
+          requests:
+            cpu: 100m
+        ports:
+        - containerPort: 5601
+          name: http
+        volumeMounts:
+        - name: sample-kibana-configmap
+          mountPath: /usr/share/kibana/config/kibana.yml
+          subPath: kibana.yml
+        resources: {}
+        terminationMessagePath: "/dev/termination-log"
+        terminationMessagePolicy: File
+        imagePullPolicy: Always
+        securityContext:
+          privileged: false
+      volumes:
+      - name: sample-kibana-configmap
+        configMap:
+            name: sample-kibana-configmap
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 5
+      dnsPolicy: ClusterFirst
+      securityContext:
+        privileged: true
+      schedulerName: default-scheduler

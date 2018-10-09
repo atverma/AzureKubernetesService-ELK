@@ -27,6 +27,39 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logstash", "Logstash", "{19
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureEventHubSample", "ELKSamples\AzureEventHubSample\AzureEventHubSample.csproj", "{FDAD8723-DD8E-4292-9A68-02098BAF0A33}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ELK with Azure AD SAML SSO Integration", "ELK with Azure AD SAML SSO Integration", "{A10E3350-F4EB-4573-A72A-EF42B6C705AF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elasticsearch", "Elasticsearch", "{A70590F8-4C48-4F54-AAEE-3BA8B55C009A}"
+	ProjectSection(SolutionItems) = preProject
+		Azure AD SAML SSO\Elasticsearch\Dockerfile = Azure AD SAML SSO\Elasticsearch\Dockerfile
+		Azure AD SAML SSO\Elasticsearch\ES_ConfigMap.yaml = Azure AD SAML SSO\Elasticsearch\ES_ConfigMap.yaml
+		Azure AD SAML SSO\Elasticsearch\ES_Service.yaml = Azure AD SAML SSO\Elasticsearch\ES_Service.yaml
+		Azure AD SAML SSO\Elasticsearch\ES_StatefulSet.yaml = Azure AD SAML SSO\Elasticsearch\ES_StatefulSet.yaml
+		Azure AD SAML SSO\Elasticsearch\elastic-stack-ca.p12 = Azure AD SAML SSO\Elasticsearch\elastic-stack-ca.p12
+		Azure AD SAML SSO\Elasticsearch\elastic-certificates.p12 = Azure AD SAML SSO\Elasticsearch\elastic-certificates.p12
+		Azure AD SAML SSO\Elasticsearch\Elasticsearch.xml = Azure AD SAML SSO\Elasticsearch\Elasticsearch.xml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kibana", "Kibana", "{3700D424-4D70-4801-9790-06148FD6C062}"
+	ProjectSection(SolutionItems) = preProject
+		Azure AD SAML SSO\Kibana\Dockerfile = Azure AD SAML SSO\Kibana\Dockerfile
+		Azure AD SAML SSO\Kibana\Kibana_ConfigMap.yaml = Azure AD SAML SSO\Kibana\Kibana_ConfigMap.yaml
+		Azure AD SAML SSO\Kibana\Kibana_Service.yaml = Azure AD SAML SSO\Kibana\Kibana_Service.yaml
+		Azure AD SAML SSO\Kibana\Kibana_Deployment.yaml = Azure AD SAML SSO\Kibana\Kibana_Deployment.yaml
+		Azure AD SAML SSO\Kibana\instance.crt = Azure AD SAML SSO\Kibana\instance.crt
+		Azure AD SAML SSO\Kibana\instance.key = Azure AD SAML SSO\Kibana\instance.key
+		Azure AD SAML SSO\Kibana\elastic-stack-ca.pem = Azure AD SAML SSO\Kibana\elastic-stack-ca.pem
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logstash", "Logstash", "{03EEF0F4-BDFF-412A-8E48-C31C20AF5F1E}"
+	ProjectSection(SolutionItems) = preProject
+		Azure AD SAML SSO\Logstash\Dockerfile = Azure AD SAML SSO\Logstash\Dockerfile
+		Azure AD SAML SSO\Logstash\Logstash_ConfigMap.yaml = Azure AD SAML SSO\Logstash\Logstash_ConfigMap.yaml
+		Azure AD SAML SSO\Logstash\Logstash_Deployment.yaml = Azure AD SAML SSO\Logstash\Logstash_Deployment.yaml
+		Azure AD SAML SSO\Logstash\Logstash_Service.yaml = Azure AD SAML SSO\Logstash\Logstash_Service.yaml
+		Azure AD SAML SSO\Logstash\elastic-stack-ca.pem = Azure AD SAML SSO\Logstash\elastic-stack-ca.pem
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -42,5 +75,9 @@ Global
 		{5F838F70-3D22-438B-B937-3D6E88C8DE35} = {599FF4D8-F69B-4D63-982C-BFD3FEFF347B}
 		{5EAEE26B-ED40-4556-B9C1-085864535DFC} = {599FF4D8-F69B-4D63-982C-BFD3FEFF347B}
 		{196B6317-B762-4D69-A885-AC8EE76C1B69} = {599FF4D8-F69B-4D63-982C-BFD3FEFF347B}
+		{A10E3350-F4EB-4573-A72A-EF42B6C705AF} = {599FF4D8-F69B-4D63-982C-BFD3FEFF347B}
+		{A70590F8-4C48-4F54-AAEE-3BA8B55C009A} = {A10E3350-F4EB-4573-A72A-EF42B6C705AF}
+		{3700D424-4D70-4801-9790-06148FD6C062} = {A10E3350-F4EB-4573-A72A-EF42B6C705AF}
+		{03EEF0F4-BDFF-412A-8E48-C31C20AF5F1E} = {A10E3350-F4EB-4573-A72A-EF42B6C705AF}
 	EndGlobalSection
 EndGlobal

@@ -1,0 +1,67 @@
+﻿apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: sample-elasticsearch
+  labels:
+    service: sample-elasticsearch
+spec:
+  serviceName: sample-elasticsearch
+  # Number of PODS
+  replicas: 1
+  selector:
+    matchLabels:
+      service: sample-elasticsearch
+  template:
+    metadata:
+      labels:
+        service: sample-elasticsearch
+    spec:
+      terminationGracePeriodSeconds: 300
+      initContainers:
+      # https://www.elastic.co/guide/en/elasticsearch/reference/current/vm-max-map-count.html
+      - name: increase-the-vm-max-map-count
+        image: busybox
+        command:
+        - sysctl
+        - -w
+        - vm.max_map_count=262144
+        securityContext:
+          privileged: true
+      containers:
+      - name: sample-elasticsearch
+        image: YOUR_ELASTICSEARCH_IMAGE
+        resources:
+          limits:
+            cpu: 2000m
+            memory: 2Gi
+          requests:
+            cpu: 100m
+            memory: 1Gi
+        ports:
+        - containerPort: 9200
+          name: http
+        - containerPort: 9300
+          name: tcp
+        env:
+          - name: cluster.name
+            value: "sample-elasticsearch-cluster"
+          - name: "xpack.security.enabled"
+            value: "true"
+          - name: "TAKE_FILE_OWNERSHIP"
+            value: “1”
+        volumeMounts:
+        - name: sample-elasticsearch-data-claim
+          mountPath: /usr/share/elasticsearch/data
+        - name: sample-elasticsearch-configmap
+          mountPath: /usr/share/elasticsearch/config/elasticsearch.yml
+          subPath: elasticsearch.yml
+        - name: sample-elasticsearch-configmap
+          mountPath: /usr/share/elasticsearch/config/role_mapping.yml
+          subPath: role_mapping.yml
+      volumes:
+      - name: sample-elasticsearch-data-claim
+        persistentVolumeClaim:
+           claimName: sample-elasticsearch-data-claim
+      - name: sample-elasticsearch-configmap
+        configMap:
+            name: sample-elasticsearch-configmap

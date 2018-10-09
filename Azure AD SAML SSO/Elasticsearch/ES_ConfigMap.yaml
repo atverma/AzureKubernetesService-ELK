@@ -1,0 +1,52 @@
+﻿apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: sample-elasticsearch-configmap
+  namespace: default
+data:
+  elasticsearch.yml: |
+    cluster.name: "sample-elasticsearch-cluster"
+    network.host: 0.0.0.0
+    discovery.zen.minimum_master_nodes: 1
+    # Update max_local_storage_nodes value based on number of nodes
+    node.max_local_storage_nodes: 1
+    xpack.security.enabled: true
+    xpack.monitoring.collection.enabled: true
+    xpack.security.transport.ssl.enabled: true
+    xpack.security.transport.ssl.verification_mode: certificate
+    xpack.license.self_generated.type: trial
+    xpack.ssl.keystore.type: PKCS12
+    xpack.ssl.keystore.path: "elastic-certificates.p12"
+    xpack.ssl.keystore.password: Password1$
+    xpack.ssl.truststore.type: PKCS12
+    xpack.ssl.truststore.path: "elastic-certificates.p12"
+    xpack.ssl.truststore.password: Password1$
+    xpack.security.transport.ssl.keystore.path: "elastic-certificates.p12"
+    xpack.security.transport.ssl.truststore.path: "elastic-certificates.p12"
+    xpack.security.http.ssl.enabled: true
+    xpack.security.http.ssl.keystore.path: "elastic-certificates.p12"
+    xpack.security.http.ssl.truststore.path: "elastic-certificates.p12"
+    xpack.ssl.verification_mode: certificate
+    http.cors.enabled: true
+    http.cors.allow-origin: "*"
+    http.max_header_size: 16kb
+    xpack:
+      security:
+        authc:
+          realms:
+            native1:
+                type: native
+                order: 0
+            saml1:
+              type: saml
+              order: 2
+              idp.metadata.path: "/usr/share/elasticsearch/config/Elasticsearch.xml"
+              idp.entity_id: "AZURE_AD_IDENTIFIER_URL"
+              sp.entity_id:  "https://KIBANA_URL:5601/"
+              sp.acs: "https://KIBANA_URL:5601/api/security/v1/saml"
+              sp.logout: "https://KIBANA_URL:5601/logout"
+              attributes.principal: "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
+              attributes.groups: "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+  role_mapping.yml: |
+
+
