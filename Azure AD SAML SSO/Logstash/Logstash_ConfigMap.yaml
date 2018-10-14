@@ -16,7 +16,9 @@ data:
   pipelines.yml: |
     - pipeline.id: azureeventhubs
       path.config: "/usr/share/logstash/azureeventhubs.cfg"
-  
+    - pipeline.id: azureredis
+      path.config: "/usr/share/logstash/azureredis.cfg"
+    
   azureeventhubs.cfg: |
     input {
       azure_event_hubs {
@@ -41,5 +43,31 @@ data:
         cacert => "/usr/share/logstash/config/elastic-stack-ca.pem"
       }
     }
-
+  
+  azureredis.cfg: |
+    input {
+      redis {
+        host => "{YOUR_REDIS_HOST_NAME}"
+        key => "messages"
+        data_type => "channel"
+        password => "{YOUR_REDIS_SECONDARY_KEY}"
+        port => 6380
+        ssl => true
+     }
+    }
+    
+    filter {
+    }
+    
+    output {
+      elasticsearch {
+        hosts => ["sample-elasticsearch:9200" ]
+        user => "elastic"
+        password => "Password1$"
+        index => "azureredis-%{+YYYY.MM.dd}"
+        ssl => true
+        cacert => "/usr/share/logstash/config/elastic-stack-ca.pem"
+      }
+    }  
+    
   logstash.conf: |

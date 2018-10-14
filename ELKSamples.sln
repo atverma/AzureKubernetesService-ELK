@@ -61,6 +61,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logstash", "Logstash", "{03
 		Azure AD SAML SSO\Logstash\elastic-stack-ca.pem = Azure AD SAML SSO\Logstash\elastic-stack-ca.pem
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureRedisCacheSample", "AzureRedisCacheSample\AzureRedisCacheSample.csproj", "{301E567B-27A8-4A10-B9E6-0931B1416875}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{FDAD8723-DD8E-4292-9A68-02098BAF0A33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDAD8723-DD8E-4292-9A68-02098BAF0A33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FDAD8723-DD8E-4292-9A68-02098BAF0A33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{301E567B-27A8-4A10-B9E6-0931B1416875}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{301E567B-27A8-4A10-B9E6-0931B1416875}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{301E567B-27A8-4A10-B9E6-0931B1416875}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{301E567B-27A8-4A10-B9E6-0931B1416875}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{5F838F70-3D22-438B-B937-3D6E88C8DE35} = {599FF4D8-F69B-4D63-982C-BFD3FEFF347B}
