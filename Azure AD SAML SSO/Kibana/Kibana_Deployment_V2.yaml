@@ -1,0 +1,59 @@
+﻿apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: sample-kibana
+  labels:
+    component: sample-kibana
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+     component: sample-kibana
+  template:
+    metadata:
+      labels:
+        component: sample-kibana
+    spec:
+      containers:
+      - name: sample-kibana
+        image: docker.elastic.co/kibana/kibana:6.4.1
+        resources:
+          limits:
+            cpu: 1000m
+          requests:
+            cpu: 100m
+        ports:
+        - containerPort: 5601
+          name: http
+        volumeMounts:
+        - name: sample-kibana-configmap
+          mountPath: /usr/share/kibana/config/kibana.yml
+          subPath: kibana.yml
+        - name: sample-kibana-kibanasecret
+          mountPath: /usr/share/kibana/config/elastic-stack-ca.pem
+          subPath: elastic-stack-ca.pem
+        - name: sample-kibana-kibanasecret
+          mountPath: /usr/share/kibana/config/instance.crt
+          subPath: instance.crt
+        - name: sample-kibana-kibanasecret
+          mountPath: /usr/share/kibana/config/instance.key
+          subPath: instance.key
+        resources: {}
+        terminationMessagePath: "/dev/termination-log"
+        terminationMessagePolicy: File
+        imagePullPolicy: Always
+        securityContext:
+          privileged: false
+      volumes:
+      - name: sample-kibana-configmap
+        configMap:
+            name: sample-kibana-configmap
+      - name: sample-kibana-kibanasecret
+        secret:
+            secretName: kibanasecret
+      restartPolicy: Always
+      terminationGracePeriodSeconds: 5
+      dnsPolicy: ClusterFirst
+      securityContext:
+        privileged: true
+      schedulerName: default-scheduler

@@ -39,6 +39,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Elasticsearch", "Elasticsea
 		Azure AD SAML SSO\Elasticsearch\elastic-certificates.p12 = Azure AD SAML SSO\Elasticsearch\elastic-certificates.p12
 		Azure AD SAML SSO\Elasticsearch\Elasticsearch.xml = Azure AD SAML SSO\Elasticsearch\Elasticsearch.xml
 		Azure AD SAML SSO\Elasticsearch\ES_PersistentVolumeClaim.yaml = Azure AD SAML SSO\Elasticsearch\ES_PersistentVolumeClaim.yaml
+		Azure AD SAML SSO\Elasticsearch\ES_StatefulSet_V2.yaml = Azure AD SAML SSO\Elasticsearch\ES_StatefulSet_V2.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kibana", "Kibana", "{3700D424-4D70-4801-9790-06148FD6C062}"
@@ -50,6 +51,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Kibana", "Kibana", "{3700D4
 		Azure AD SAML SSO\Kibana\instance.crt = Azure AD SAML SSO\Kibana\instance.crt
 		Azure AD SAML SSO\Kibana\instance.key = Azure AD SAML SSO\Kibana\instance.key
 		Azure AD SAML SSO\Kibana\elastic-stack-ca.pem = Azure AD SAML SSO\Kibana\elastic-stack-ca.pem
+		Azure AD SAML SSO\Kibana\Kibana_Deployment_V2.yaml = Azure AD SAML SSO\Kibana\Kibana_Deployment_V2.yaml
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logstash", "Logstash", "{03EEF0F4-BDFF-412A-8E48-C31C20AF5F1E}"
@@ -59,6 +61,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logstash", "Logstash", "{03
 		Azure AD SAML SSO\Logstash\Logstash_Deployment.yaml = Azure AD SAML SSO\Logstash\Logstash_Deployment.yaml
 		Azure AD SAML SSO\Logstash\Logstash_Service.yaml = Azure AD SAML SSO\Logstash\Logstash_Service.yaml
 		Azure AD SAML SSO\Logstash\elastic-stack-ca.pem = Azure AD SAML SSO\Logstash\elastic-stack-ca.pem
+		Azure AD SAML SSO\Logstash\Logstash_Deployment_V2.yaml = Azure AD SAML SSO\Logstash\Logstash_Deployment_V2.yaml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureRedisCacheSample", "AzureRedisCacheSample\AzureRedisCacheSample.csproj", "{301E567B-27A8-4A10-B9E6-0931B1416875}"
