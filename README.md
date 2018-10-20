@@ -16,3 +16,9 @@ Using SAML SSO for Elasticsearch with AAD means that Elasticsearch does not need
 
 You can read details @ https://blogs.msdn.microsoft.com/atverma/2018/10/09/azure-kubernetes-service-aks-azure-ad-saml-based-single-sign-on-to-secure-elasticsearch-and-kibana-and-securing-communications-in-elk/
 
+# PART 3:
+
+Azure Redis Cache is based on the popular open-source Redis cache. It is typically used as a cache to improve the performance and scalability of systems that rely heavily on backend data-stores. Logstash's Redis plugin will read events from Redis instance. I will create a Logstash event processing pipeline where I will define Redis as input and Elasticsearch as output. 
+
+You can read details @
+https://blogs.msdn.microsoft.com/atverma/2018/10/14/ingest-azure-redis-cache-messages-into-elasticsearch-logstash-and-kibana-cluster-deployed-in-azure-kubernetes-service-aks/
