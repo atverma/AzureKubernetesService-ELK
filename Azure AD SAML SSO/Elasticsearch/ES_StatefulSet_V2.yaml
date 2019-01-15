@@ -49,7 +49,7 @@ spec:
                 echo $PASSWORD | /usr/share/elasticsearch/bin/elasticsearch-keystore add xpack.security.http.ssl.keystore.secure_password  -xf ; \
                 echo $PASSWORD | /usr/share/elasticsearch/bin/elasticsearch-keystore add xpack.security.http.ssl.truststore.secure_password  -xf ; \
                 echo $PASSWORD | /usr/share/elasticsearch/bin/elasticsearch-keystore add bootstrap.password  -xf; \
-                /usr/share/elasticsearch/bin/elasticsearch ;"]
+                sh -c /usr/local/bin/docker-entrypoint.sh eswrapper;"]
         env:
           - name: cluster.name
             value: "sample-elasticsearch-cluster"
