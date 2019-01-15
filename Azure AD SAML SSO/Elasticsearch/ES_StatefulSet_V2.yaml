@@ -5,7 +5,7 @@ metadata:
   labels:
     service: sample-elasticsearch
 spec:
-  serviceName: sample-elasticsearch
+  serviceName: sample-elasticsearch-discovery
   # Number of PODS
   replicas: 1
   selector:
@@ -27,11 +27,19 @@ spec:
         - vm.max_map_count=262144
         securityContext:
           privileged: true
+      - name: fix-the-volume-permission
+        image: busybox
+        command: ["sh", "-c", "chown -R 1000:1000 /usr/share/elasticsearch/data"]
+        securityContext:
+          privileged: true
+        volumeMounts:
+        - name: sample-elasticsearch-data-claim
+          mountPath: /usr/share/elasticsearch/data
       containers:
       - name: sample-elasticsearch
         image: docker.elastic.co/elasticsearch/elasticsearch:6.4.1
         securityContext:
-          runAsUser: 2000
+          runAsUser: 1000
         resources:
           limits:
             cpu: 2000m
@@ -59,6 +67,12 @@ spec:
             value: “1”
           - name: PASSWORD
             value: Password1$
+          - name: node.name
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: discovery.zen.ping.unicast.hosts
+            value: "sample-elasticsearch-discovery:9300"
         volumeMounts:
         - name: sample-elasticsearch-data-claim
           mountPath: /usr/share/elasticsearch/data
@@ -78,12 +92,18 @@ spec:
           mountPath: /usr/share/elasticsearch/config/Elasticsearch.xml
           subPath: Elasticsearch.xml
       volumes:
-      - name: sample-elasticsearch-data-claim
-        persistentVolumeClaim:
-           claimName: sample-elasticsearch-data-claim
       - name: sample-elasticsearch-configmap
         configMap:
             name: sample-elasticsearch-configmap
       - name: sample-elasticsearch-elasticsearchsecret
         secret:
             secretName: elasticsearchsecret
+  volumeClaimTemplates:
+  - metadata:
+      name: sample-elasticsearch-data-claim
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      storageClassName: default
+      resources:
+        requests:
+          storage: 2Gi

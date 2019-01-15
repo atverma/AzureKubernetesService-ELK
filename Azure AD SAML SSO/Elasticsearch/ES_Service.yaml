@@ -16,4 +16,18 @@ spec:
   - name: transport          
     port: 9300               
     targetPort: 9300
-    protocol: TCP            
+    protocol: TCP 
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: sample-elasticsearch-discovery
+spec:
+  clusterIP: None
+  selector:
+    service: sample-elasticsearch
+  ports:
+  - name: transport
+    port: 9300           

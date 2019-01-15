@@ -8,7 +8,7 @@ data:
     cluster.name: "sample-elasticsearch-cluster"
     network.host: 0.0.0.0
     discovery.zen.minimum_master_nodes: 1
-    #Update max_local_storage_nodes value based on number of nodes
+    xpack.license.self_generated.type: trial
     node.max_local_storage_nodes: 1
     xpack.security.enabled: true
     xpack.monitoring.collection.enabled: true
